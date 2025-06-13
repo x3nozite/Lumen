@@ -117,3 +117,201 @@ flutter/!**/ios/**/default.pbxuser
 flutter/!**/ios/**/default.perspectivev3
 flutter/!/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 flutter/!/dev/ci/**/Gemfile.lock
+
+
+# Python Stuff
+# Byte-compiled / optimized / DLL files
+django/__pycache__/
+django/*.py[cod]
+django/*$py.class
+
+# C extensions
+django/*.so
+
+# Distribution / packaging
+django/.Python
+django/build/
+django/develop-eggs/
+django/dist/
+django/downloads/
+django/eggs/
+django/.eggs/
+django/lib/
+django/lib64/
+django/parts/
+django/sdist/
+django/var/
+django/wheels/
+django/share/python-wheels/
+django/*.egg-info/
+django/.installed.cfg
+django/*.egg
+django/MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+django/*.manifest
+django/*.spec
+
+# Installer logs
+django/pip-log.txt
+django/pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+django/htmlcov/
+django/.tox/
+django/.nox/
+django/.coverage
+django/.coverage.*
+django/.cache
+django/nosetests.xml
+django/coverage.xml
+django/*.cover
+django/*.py,cover
+django/.hypothesis/
+django/.pytest_cache/
+django/cover/
+
+# Translations
+django/*.mo
+django/*.pot
+
+# Django stuff:
+django/*.log
+django/local_settings.py
+django/db.sqlite3
+django/db.sqlite3-journal
+
+# Flask stuff:
+django/instance/
+django/.webassets-cache
+
+# Scrapy stuff:
+django/.scrapy
+
+# Sphinx documentation
+django/docs/_build/
+
+# PyBuilder
+django/.pybuilder/
+django/target/
+
+# Jupyter Notebook
+django/.ipynb_checkpoints
+
+# IPython
+django/profile_default/
+django/ipython_config.py
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# pipenv
+#   According to pypa/pipenv#598, it is recommended to include Pipfile.lock in version control.
+#   However, in case of collaboration, if having platform-specific dependencies or dependencies
+#   having no cross-platform support, pipenv may install dependencies that don't work, or not
+#   install all needed dependencies.
+#Pipfile.lock
+
+# UV
+#   Similar to Pipfile.lock, it is generally recommended to include uv.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#uv.lock
+
+# poetry
+#   Similar to Pipfile.lock, it is generally recommended to include poetry.lock in version control.
+#   This is especially recommended for binary packages to ensure reproducibility, and is more
+#   commonly ignored for libraries.
+#   https://python-poetry.org/docs/basic-usage/#commit-your-poetrylock-file-to-version-control
+#poetry.lock
+#poetry.toml
+
+# pdm
+#   Similar to Pipfile.lock, it is generally recommended to include pdm.lock in version control.
+#pdm.lock
+#   pdm stores project-wide configurations in .pdm.toml, but it is recommended to not include it
+#   in version control.
+#   https://pdm.fming.dev/latest/usage/project/#working-with-version-control
+django/.pdm.toml
+django/.pdm-python
+django/.pdm-build/
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+django/__pypackages__/
+
+# Celery stuff
+django/celerybeat-schedule
+django/celerybeat.pid
+
+# SageMath parsed files
+django/*.sage.py
+
+# Environments
+django/.env
+django/.venv
+django/env/
+django/venv/
+django/ENV/
+django/env.bak/
+django/venv.bak/
+
+# Spyder project settings
+django/.spyderproject
+django/.spyproject
+
+# Rope project settings
+django/.ropeproject
+
+# mkdocs documentation
+django//site
+
+# mypy
+django/.mypy_cache/
+django/.dmypy.json
+django/dmypy.json
+
+# Pyre type checker
+django/.pyre/
+
+# pytype static type analyzer
+django/.pytype/
+
+# Cython debug symbols
+django/cython_debug/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+#.idea/
+
+# Abstra
+# Abstra is an AI-powered process automation framework.
+# Ignore directories containing user credentials, local state, and settings.
+# Learn more at https://abstra.io/docs
+django/.abstra/
+
+# Visual Studio Code
+#  Visual Studio Code specific template is maintained in a separate VisualStudioCode.gitignore 
+#  that can be found at https://github.com/github/gitignore/blob/main/Global/VisualStudioCode.gitignore
+#  and can be added to the global gitignore or merged into this file. However, if you prefer, 
+#  you could uncomment the following to ignore the entire vscode folder
+# .vscode/
+
+# Ruff stuff:
+django/.ruff_cache/
+
+# PyPI configuration file
+django/.pypirc
+
+# Cursor
+#  Cursor is an AI-powered code editor. `.cursorignore` specifies files/directories to
+#  exclude from AI features like autocomplete and code analysis. Recommended for sensitive data
+#  refer to https://docs.cursor.com/context/ignore-files
+django/.cursorignore
+django/.cursorindexingignore
