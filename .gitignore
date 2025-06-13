@@ -10,21 +10,21 @@ flutter/.history
 
 
 # Flutter repo-specific
-flutter//bin/cache/
-flutter//bin/internal/bootstrap.bat
-flutter//bin/internal/bootstrap.sh
-flutter//bin/mingit/
-flutter//dev/benchmarks/mega_gallery/
-flutter//dev/bots/.recipe_deps
-flutter//dev/bots/android_tools/
-flutter//dev/devicelab/ABresults*.json
-flutter//dev/docs/doc/
-flutter//dev/docs/flutter.docs.zip
-flutter//dev/docs/lib/
-flutter//dev/docs/pubspec.yaml
-flutter//dev/integration_tests/**/xcuserdata
-flutter//dev/integration_tests/**/Pods
-flutter//packages/flutter/coverage/
+flutter/bin/cache/
+flutter/bin/internal/bootstrap.bat
+flutter/bin/internal/bootstrap.sh
+flutter/bin/mingit/
+flutter/dev/benchmarks/mega_gallery/
+flutter/dev/bots/.recipe_deps
+flutter/dev/bots/android_tools/
+flutter/dev/devicelab/ABresults*.json
+flutter/dev/docs/doc/
+flutter/dev/docs/flutter.docs.zip
+flutter/dev/docs/lib/
+flutter/dev/docs/pubspec.yaml
+flutter/dev/integration_tests/**/xcuserdata
+flutter/dev/integration_tests/**/Pods
+flutter/packages/flutter/coverage/
 flutter/version
 flutter/analysis_benchmark.json
 
@@ -267,7 +267,7 @@ django/.spyproject
 django/.ropeproject
 
 # mkdocs documentation
-django//site
+django/site
 
 # mypy
 django/.mypy_cache/
