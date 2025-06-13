@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     # Project Apps
     'api',
     'userauth',
+    'chatbot',
 
     # JWT Auth stuff
     'rest_framework',
