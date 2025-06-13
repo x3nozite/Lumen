@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Project Apps
     'api',
-    'userauth'
+    'userauth',
 
     # JWT Auth stuff
     'rest_framework',
