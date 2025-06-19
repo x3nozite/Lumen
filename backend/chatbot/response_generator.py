@@ -29,10 +29,18 @@ def get_response(words):
 
     return response
 
+def format_response(response):
+    # Extract the claim and reasoning
+    claim = response.choices[0].message.content
+    # Remove unnecessary text or formatting
+    claim = claim.strip()
+    
+    return claim
+
 def generate_response(words):
     #call the OpenAI API
     response = get_response(words)
 
-    return response
+    return format_response(response)
 
-print(get_response("earth is flat"))
+print(generate_response("earth is flat"))
