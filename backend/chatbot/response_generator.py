@@ -3,45 +3,54 @@ import json
 import os
 
 # Create your views here.
+# temporary saving api in env
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def get_response(words):
     # System prompt
-    system_prompt = f"""
-    Read the following content and return a structured JSON object with the following fields:
-    1. "main_claim" : Extract the main factual claim made in the text.
-    2. "verdict": Ranging from "True", "Likely True", "Unclear", or "Misinformation".
-    3. "reasoning": Explain your reasoning of how you arrived at the verdict.
-    4. "rating": an integer between 0 and 100 indicating how likely the claim is fake (0 = real, 100 = hoax)
-
-    Return only the JSON object. Do not include any explanation or formatting outside the JSON. 
+    instruction = f"""
+    Analyze the content and return a structured JSON object with:
+    1. "main_claim" : Main factual claim made in the text.
+    2. "verdict": "True", "Likely True", "Unclear", or "Misinformation".
+    3. "reasoning": Explain how you got the verdict and name any sources used.
+    4. "rating": 0-100 score (0 = real, 100 = hoax)
+    5. "web_link": All URLs supporting the verdict
+    Return only the JSON object. No extra text 
     """
 
     user_prompt = f"""
-        Content:
-        \"\"\"{words}\"\"\"
+    Content:
+    \"\"\"{words}\"\"\"
     """
 
-    # Make the api call
-    response = client.chat.completions.create(
-        model="gpt-4o-mini-2024-07-18",
-        messages=[{
-            "role": "system",
-            "content": system_prompt
-        },
+    tools = [
         {
-            "role": "user",
-            "content": user_prompt
-        }],
-        temperature=0.8,
-        max_tokens=1000
+            "type": "web_search_preview"
+        }
+    ]
+
+    response = client.responses.create(
+        model="gpt-4o-mini",
+        tools=tools,
+        instructions=instruction,
+        input=[
+            {
+                "role": "developer",
+                "content": instruction
+            },
+            {
+                "role": "user",
+                "content": user_prompt
+            }
+        ],
+        
     )
 
     return response
 
 def format_response(response):
     # Extract the claim and reasoning
-    content = response.choices[0].message.content
+    content = response.output_text
     # Remove unnecessary text or formatting
     content = content.strip()
     
