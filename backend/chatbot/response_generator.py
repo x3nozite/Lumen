@@ -1,4 +1,5 @@
 from openai import OpenAI
+from pydantic import BaseModel
 import json
 import os
 
@@ -6,16 +7,23 @@ import os
 # temporary saving api in env
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
+class LumenResponse(BaseModel):
+    main_claim: str
+    verdict: str
+    reasoning: str
+    rating: int
+    web_links: list[str]
+
 def get_response(words):
     # System prompt
     instruction = f"""
-    Analyze the content and return a structured JSON object with:
+    Analyze the content and return a structured JSON object with this structure:
     1. "main_claim" : Main factual claim made in the text.
     2. "verdict": "True", "Likely True", "Unclear", or "Misinformation".
-    3. "reasoning": Explain how you got the verdict and name any sources used.
-    4. "rating": 0-100 score (0 = real, 100 = hoax)
-    5. "web_link": All URLs supporting the verdict
-    Return only the JSON object. No extra text 
+    3. "reasoning": Explain how you got the verdict and name any sources used. Please always use external source whenever possible.
+    4. "rating": 0-100 score (0 = real, 100 = hoax).
+    5. "web_links": All URLs supporting the verdict.
+    Return only valid JSON object. No extra text or formatting.
     """
 
     user_prompt = f"""
@@ -29,13 +37,12 @@ def get_response(words):
         }
     ]
 
-    response = client.responses.create(
+    response = client.responses.parse(
         model="gpt-4o-mini",
         tools=tools,
-        instructions=instruction,
         input=[
             {
-                "role": "developer",
+                "role":"developer",
                 "content": instruction
             },
             {
@@ -43,30 +50,15 @@ def get_response(words):
                 "content": user_prompt
             }
         ],
-        
+        text_format=LumenResponse
     )
 
     return response
 
 def format_response(response):
     # Extract the claim and reasoning
-    content = response.output_text
-    # Remove unnecessary text or formatting
-    content = content.strip()
-    
-    try:
-        # Parse json object into python dictionary
-        parsed = json.loads(content)
-        return parsed
-    except json.JSONDecodeError:
-        print("No valid JSON detected:")
-        print(content)
-        return{
-            "main_claim": "",
-            "verdict": "Unclear",
-            "reasoning": content,  # fallback to raw text
-            "rating": 50
-        }
+    content = response.output_parsed
+    return content
 
 def generate_response(words):
     #call the OpenAI API
@@ -74,4 +66,4 @@ def generate_response(words):
 
     return format_response(response)
 
-print(generate_response("earth is flat"))
+print(generate_response("Makan tengah malam bikin gemuk"))
