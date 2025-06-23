@@ -1,9 +1,13 @@
 from django.shortcuts import render
 import json
 from django.http import JsonResponse
-from .response_generator import generate_response
+from .web_search_test import generate_response
+
+#temporary
+from django.views.decorators.csrf import csrf_exempt
 
 # Not too sure
+@csrf_exempt
 def chatbot_response(request):
     if request.method == "POST":
         body = json.loads(request.body)
@@ -14,4 +18,4 @@ def chatbot_response(request):
         
         reply = generate_response(user_claim)
 
-        return JsonResponse({"response": reply})
+        return JsonResponse({"response": reply.model_dump()})

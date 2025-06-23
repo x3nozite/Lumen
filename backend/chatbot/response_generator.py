@@ -66,4 +66,4 @@ def generate_response(words):
 
     return format_response(response)
 
-print(generate_response("Makan tengah malam bikin gemuk"))
+print(generate_response("Tiannanmen Square Massacre death toll is only in the hundreds"))
