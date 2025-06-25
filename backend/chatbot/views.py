@@ -6,7 +6,7 @@ from .web_search_test import generate_response
 #temporary
 from django.views.decorators.csrf import csrf_exempt
 
-# Not too sure
+# csrf_exempt to bypass system authorization checks. (Only for testting)
 @csrf_exempt
 def chatbot_response(request):
     if request.method == "POST":
