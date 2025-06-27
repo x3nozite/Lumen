@@ -30,10 +30,10 @@ def extract_main_claim(words):
 
 
 # search the web with main claim as the query 
-def search_web(claim, num_results=3):
+def search_web(claim, num_results=7):
     params = {
         "q": claim,
-        # limit number of results used to 3
+        # limit number of results used to 7
         "num": num_results,
         "api_key": os.getenv("SERPAPI_API_KEY"),
         "engine": "google"
@@ -89,7 +89,7 @@ def get_response(claim, links):
     """
 
     response = client.responses.parse(
-        model="gpt-4o-mini",
+        model="o4-mini",
         input=[
             {
                 "role":"developer",
