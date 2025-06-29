@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:frontend/screens/result/result.dart';
+import 'package:frontend/screens/scan/scanpage.dart';
 
 void main() {
   // 1. App Entry Point
@@ -13,8 +13,8 @@ class Lumen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'Poppins'),
-      home: const ResultPage(),
+      theme: ThemeData(fontFamily: 'Poppins', primaryColor: Color(0xFFE6EDF2)),
+      home: const ScanPage(),
     );
   }
 }
