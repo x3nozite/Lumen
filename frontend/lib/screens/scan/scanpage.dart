@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:frontend/screens/scan/input/inputtext.dart';
 import 'package:frontend/screens/scan/input/inputimage.dart';
 
+//ini harusny stateful kan
 class ScanPage extends StatelessWidget {
   const ScanPage({super.key});
 
@@ -10,8 +11,27 @@ class ScanPage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(
-        title: Text('Scan Page'),
-        centerTitle: true,
+        leading: Icon(Icons.account_circle),
+        title: Text(
+          'Hello, [Username]',
+          style: TextStyle(
+            fontSize: 14,
+          ),
+        ),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              //search bar function/class
+            }, 
+            icon: Icon(Icons.search)
+          ),
+
+          IconButton(
+            onPressed: () {
+              //notif page
+            },
+            icon: Icon(Icons.notifications))
+        ],
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: Column(
