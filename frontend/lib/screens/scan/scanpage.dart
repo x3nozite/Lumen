@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/notifications.dart';
 import 'package:frontend/screens/scan/input/inputtext.dart';
 import 'package:frontend/screens/scan/input/inputimage.dart';
 
@@ -28,7 +29,10 @@ class ScanPage extends StatelessWidget {
 
           IconButton(
             onPressed: () {
-              //notif page
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const NotificationsPage())
+              );
             },
             icon: Icon(Icons.notifications))
         ],
