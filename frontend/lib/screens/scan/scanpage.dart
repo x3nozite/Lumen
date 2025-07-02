@@ -15,27 +15,27 @@ class ScanPage extends StatelessWidget {
         leading: Icon(Icons.account_circle),
         title: Text(
           'Hello, [Username]',
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w500
-          ),
+          style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
         actions: <Widget>[
           IconButton(
             onPressed: () {
               //search bar function/class
-            }, 
-            icon: Icon(Icons.search)
+            },
+            icon: Icon(Icons.search),
           ),
 
           IconButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const NotificationsPage())
+                MaterialPageRoute(
+                  builder: (context) => const NotificationsPage(),
+                ),
               );
             },
-            icon: Icon(Icons.notifications))
+            icon: Icon(Icons.notifications),
+          ),
         ],
         backgroundColor: Theme.of(context).primaryColor,
       ),
