@@ -2,6 +2,7 @@ from django.shortcuts import render
 import json
 from django.http import JsonResponse
 from .web_search_test import generate_response
+from .gemini_response import generate_response_gemini
 
 #temporary
 from django.views.decorators.csrf import csrf_exempt
@@ -19,3 +20,19 @@ def chatbot_response(request):
         reply = generate_response(user_claim)
 
         return JsonResponse({"response": reply.model_dump()})
+    
+
+@csrf_exempt
+def gemini_response(request):
+    if request.method == "POST":
+        body = json.loads(request.body)
+        user_claim = body.get("message", "")
+
+        if not user_claim:
+            return JsonResponse({"error": "No message provided"}, status=400)
+    
+    raw_response = generate_response(user_claim)
+
+    cleaned_response = raw_response.removeprefix("```json").removesuffix("```").strip()
+    # Unfinished
+

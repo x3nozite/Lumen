@@ -61,14 +61,6 @@ def search_web(claim, num_results=7):
 
     return links
 
-# Format of the response
-class LumenResponse(BaseModel):
-    main_claim: str
-    verdict: str
-    reasoning: str
-    rating: int
-    web_links: list[str]
-
 def get_response(claim, links):
     # Format the weblinks for the ai model to search
     formatted_sources = "\n".join(
@@ -84,7 +76,7 @@ def get_response(claim, links):
     3. "reasoning": Explain how you got the verdict.
     4. "rating": 0-100 score (0 = true, 50 = unclear, 100 = misinformation).
     5. "web_links": All URLs supporting the verdict (External Sources).
-    Return only valid JSON object. No extra text or formatting.
+    Return only valid JSON object. NO EXTRA TEXT OR FORMATTING.
     """
 
     # Main claim (obtained with the extract_main_claim() function)
@@ -114,7 +106,7 @@ def format_response(response):
     content = response
     return content
 
-def generate_response(words):
+def generate_response_gemini(words):
     #call the OpenAI API
     claim = extract_main_claim(words)
     links = search_web(claim)
