@@ -71,23 +71,25 @@ class ScanPage extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: <Widget>[
-        ElevatedButton(
+        ElevatedButton.icon(
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const InputTextScreen()),
             );
           },
-          child: const Text('Scan Text'),
+          icon: Icon(Icons.text_fields),
+          label: const Text('Scan Text'),
         ),
-        ElevatedButton(
+        ElevatedButton.icon(
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(builder: (context) => const InputImageScreen()),
             );
           },
-          child: const Text('Scan Image'),
+          icon: Icon(Icons.image),
+          label: const Text('Scan Image'),
         ),
       ],
     );
