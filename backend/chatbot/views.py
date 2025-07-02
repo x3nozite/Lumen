@@ -41,13 +41,16 @@ def gemini_response(request):
             response_dict = json.loads(cleaned_response)
 
             # Save response to DB
-            claim = LumenResponse.objects.create(
-                main_claim = response_dict["main_claim"],
-                verdict = response_dict["verdict"],
-                reasoning = response_dict["reasoning"],
-                rating = response_dict["rating"],
-                web_links = response_dict["web_links"]
-            )
+            try:
+                claim = LumenResponse.objects.create(
+                    main_claim = response_dict["main_claim"],
+                    verdict = response_dict["verdict"],
+                    reasoning = response_dict["reasoning"],
+                    rating = response_dict["rating"],
+                    web_links = response_dict["web_links"]
+                )
+            except Exception as e:
+                pass
 
             return JsonResponse({
                 "response": {
