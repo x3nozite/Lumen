@@ -17,6 +17,7 @@ class ScanPage extends StatelessWidget {
           'Hello, [Username]',
           style: TextStyle(
             fontSize: 14,
+            fontWeight: FontWeight.w500
           ),
         ),
         actions: <Widget>[
