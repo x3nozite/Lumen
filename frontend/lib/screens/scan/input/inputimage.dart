@@ -55,19 +55,7 @@ class _ImagePickerState extends State<InputImageScreen> {
       padding: EdgeInsets.all(16),
       child: Column(
         children: [
-          _selectedImage != null
-              ? Image.file(
-                  _selectedImage!,
-                  height: 200,
-                  width: double.infinity,
-                  fit: BoxFit.cover,
-                )
-              : Container(
-                  height: 200,
-                  color: Colors.grey[300],
-                  child: Center(child: Text('No image selected')),
-                  
-                ),
+          _selectedImage != null ? _imageUploaded(context) : _noImageUploaded(context),
           SizedBox(height: 20),
           ElevatedButton.icon(
             onPressed: _pickImage,
@@ -79,7 +67,9 @@ class _ImagePickerState extends State<InputImageScreen> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                _submitImage();
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: const Color(0xFF1982C4),
                 foregroundColor: Colors.white,
@@ -92,4 +82,20 @@ class _ImagePickerState extends State<InputImageScreen> {
     );
   }
 
+  Container _noImageUploaded(BuildContext context) {
+    return Container(
+      height: 200,
+      color: Colors.grey[300],
+      child: Center(child: Text('No image selected')),            
+    );
+  }
+
+  Image _imageUploaded(BuildContext context) {
+    return Image.file(
+      _selectedImage!,
+      height: 200,
+      width: double.infinity,
+      fit: BoxFit.cover,
+    );
+  }
 }
