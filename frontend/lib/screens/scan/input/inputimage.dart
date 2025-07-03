@@ -66,6 +66,11 @@ class _ImagePickerState extends State<InputImageScreen> {
           ),
           SizedBox(height: 20),
           Spacer(),
+          Text(
+            'Each upload will be archived and not editable. Please ensure your image is clear, appropriate, and matches the expected content.',
+            style: TextStyle(fontSize: 10, color: Color(0xFF67656C)),
+          ),
+          SizedBox(height: 8),
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
@@ -112,7 +117,7 @@ class _ImagePickerState extends State<InputImageScreen> {
         ),
         children: [
           TextSpan(
-            text: 'Upload image to scan\n',
+            text: 'Upload image to Scan\n',
             style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
           TextSpan(
