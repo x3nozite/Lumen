@@ -39,12 +39,13 @@ class _InputTextScreen extends State<InputTextScreen> {
                   final response = await Api.postTextAnalysis(_controller.text);
 
                   if (response != null) {
-                    Navigator.push(
+                    Navigator.pushNamed(
                       context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ResultPage(response, _controller.text),
-                      ),
+                      '/result',
+                      arguments: {
+                        'data': response,
+                        'inputText': _controller.text,
+                      },
                     );
                   }
                 },

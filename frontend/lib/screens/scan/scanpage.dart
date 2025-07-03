@@ -73,20 +73,14 @@ class ScanPage extends StatelessWidget {
       children: <Widget>[
         ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const InputTextScreen()),
-            );
+            Navigator.pushNamed(context, '/input_text');
           },
           icon: Icon(Icons.text_fields),
           label: const Text('Scan Text'),
         ),
         ElevatedButton.icon(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const InputImageScreen()),
-            );
+            Navigator.pushNamed(context, '/input_image');
           },
           icon: Icon(Icons.image),
           label: const Text('Scan Image'),
