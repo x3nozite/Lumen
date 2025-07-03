@@ -27,7 +27,7 @@ class _InputTextScreenState extends State<InputTextScreen> {
             _textInput(),
             Spacer(),
             Text(
-              'Each upload will be archived and not editable. Please review to confirm completeness',
+              'Each upload will be archived and not editable. Please review your text to ensure it appears exactly as you intend before scanning.',
               style: TextStyle(fontSize: 10, color: Color(0xFF67656C)),
             ),
             SizedBox(height: 8),
