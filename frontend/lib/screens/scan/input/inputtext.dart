@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class InputTextScreen extends StatelessWidget {
+class InputTextScreen extends StatefulWidget {
   const InputTextScreen({super.key});
+
+  @override
+  State<InputTextScreen> createState() => _InputTextScreenState();
+}
+
+class _InputTextScreenState extends State<InputTextScreen> {
+  final TextEditingController _inputController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +50,7 @@ class InputTextScreen extends StatelessWidget {
 
   TextField _textInput() {
     return TextField(
+      controller: _inputController,
       style: TextStyle(fontSize: 8),
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
@@ -63,28 +71,28 @@ class InputTextScreen extends StatelessWidget {
       maxLines: 15,
     );
   }
+}
 
-  RichText _titleText(BuildContext context) {
-    return RichText(
-      text: TextSpan(
-        style: DefaultTextStyle.of(context).style.copyWith(
-          fontFamily: 'Poppins',
-          color: Colors.black,
-          decoration: TextDecoration.none,
-          height: 2,
-        ),
-        children: [
-          TextSpan(
-            text: 'Paste Text to Scan\n',
-            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-          ),
-          TextSpan(
-            text:
-                'Upload text to check for fraud, hoaxes, or misinformation in seconds.',
-            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-          ),
-        ],
+RichText _titleText(BuildContext context) {
+  return RichText(
+    text: TextSpan(
+      style: DefaultTextStyle.of(context).style.copyWith(
+        fontFamily: 'Poppins',
+        color: Colors.black,
+        decoration: TextDecoration.none,
+        height: 2,
       ),
-    );
-  }
+      children: [
+        TextSpan(
+          text: 'Paste Text to Scan\n',
+          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        TextSpan(
+          text:
+              'Upload text to check for fraud, hoaxes, or misinformation in seconds.',
+          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+        ),
+      ],
+    ),
+  );
 }
