@@ -3,18 +3,14 @@ import 'package:http/http.dart' as http;
 
 class Api {
   static const String chatbotUrl = 'http://localhost:8000/chatbot';
-  
+
   // POST request for text
   static Future<Map<String, dynamic>?> postTextAnalysis(String text) async {
     try {
       final response = await http.post(
         Uri.parse('$chatbotUrl/response/'),
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: jsonEncode({
-          'message': text, 
-        }),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode({'message': text}),
       );
 
       if (response.statusCode == 200) {
@@ -41,10 +37,7 @@ class Api {
       }
     } catch (e) {
       print('Exception occurred: $e');
-      return {
-        'error': 'Network error occurred',
-        'details': e.toString(),
-      };
+      return {'error': 'Network error occurred', 'details': e.toString()};
     }
   }
 }

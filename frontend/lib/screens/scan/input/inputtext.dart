@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:frontend/screens/scan/result/result.dart';
+import 'package:frontend/services/api.dart';
 
 class InputTextScreen extends StatefulWidget {
   const InputTextScreen({super.key});
-
   @override
-  State<InputTextScreen> createState() => _InputTextScreenState();
+  _InputTextScreen createState() => _InputTextScreen();
 }
 
-class _InputTextScreenState extends State<InputTextScreen> {
-  final TextEditingController _inputController = TextEditingController();
+class _InputTextScreen extends State<InputTextScreen> {
+  final TextEditingController _controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +35,19 @@ class _InputTextScreenState extends State<InputTextScreen> {
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: () {},
+                onPressed: () async {
+                  final response = await Api.postTextAnalysis(_controller.text);
+
+                  if (response != null) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ResultPage(response, _controller.text),
+                      ),
+                    );
+                  }
+                },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF1982C4),
                   foregroundColor: Colors.white,
@@ -50,8 +63,8 @@ class _InputTextScreenState extends State<InputTextScreen> {
 
   TextField _textInput() {
     return TextField(
-      controller: _inputController,
       style: TextStyle(fontSize: 8),
+      controller: _controller,
       decoration: InputDecoration(
         enabledBorder: OutlineInputBorder(
           borderSide: BorderSide(color: Color(0xFF1982C4)),
@@ -71,28 +84,28 @@ class _InputTextScreenState extends State<InputTextScreen> {
       maxLines: 15,
     );
   }
-}
 
-RichText _titleText(BuildContext context) {
-  return RichText(
-    text: TextSpan(
-      style: DefaultTextStyle.of(context).style.copyWith(
-        fontFamily: 'Poppins',
-        color: Colors.black,
-        decoration: TextDecoration.none,
-        height: 2,
+  RichText _titleText(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: DefaultTextStyle.of(context).style.copyWith(
+          fontFamily: 'Poppins',
+          color: Colors.black,
+          decoration: TextDecoration.none,
+          height: 2,
+        ),
+        children: [
+          TextSpan(
+            text: 'Paste Text to Scan\n',
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          TextSpan(
+            text:
+                'Upload text to check for fraud, hoaxes, or misinformation in seconds.',
+            style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+          ),
+        ],
       ),
-      children: [
-        TextSpan(
-          text: 'Paste Text to Scan\n',
-          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-        ),
-        TextSpan(
-          text:
-              'Upload text to check for fraud, hoaxes, or misinformation in seconds.',
-          style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
-        ),
-      ],
-    ),
-  );
+    );
+  }
 }
