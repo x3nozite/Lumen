@@ -5,7 +5,7 @@ import os
 
 # Create your views here.
 # temporary saving api in env
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+#client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 class LumenResponse(BaseModel):
     main_claim: str

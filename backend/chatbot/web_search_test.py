@@ -6,7 +6,7 @@ from serpapi import GoogleSearch
 
 # Create your views here.
 # temporary saving api in env
-client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+#client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # Calling the OpenAI api to extract the main claim from the user's text
 def extract_main_claim(words):
