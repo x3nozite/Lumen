@@ -125,10 +125,9 @@ class ResultPage extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(16)),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withValues(alpha: 0.4),
-                blurRadius: 2,
-                spreadRadius: 2,
-                offset: Offset(0.0, 4.0),
+                color: Colors.grey.withOpacity(0.4),
+                blurRadius: 8,
+                offset: Offset(0, 2),
               ),
             ],
           ),
@@ -157,15 +156,14 @@ class ResultPage extends StatelessWidget {
             borderRadius: BorderRadius.all(Radius.circular(16)),
             boxShadow: [
               BoxShadow(
-                color: Colors.grey.withValues(alpha: 0.4),
-                blurRadius: 2,
-                spreadRadius: 2,
-                offset: Offset(0.0, 4.0),
+                color: Colors.grey.withOpacity(0.4),
+                blurRadius: 8,
+                offset: Offset(0, 2),
               ),
             ],
           ),
           child: Text(
-            "\"${data['main_claim']}\"",
+            "\"${data['main_claim'] ?? '-'}\"",
             style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
           ),
         ),
@@ -181,10 +179,9 @@ class ResultPage extends StatelessWidget {
         color: Colors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.4),
-            blurRadius: 2,
-            spreadRadius: 2,
-            offset: Offset(0.0, 4.0),
+            color: Colors.grey.withOpacity(0.4),
+            blurRadius: 8,
+            offset: Offset(0, 2),
           ),
         ],
         borderRadius: BorderRadius.all((Radius.circular(16))),
@@ -198,7 +195,7 @@ class ResultPage extends StatelessWidget {
           ),
           children: <TextSpan>[
             TextSpan(
-              text: '${data['verdict']}\n',
+              text: '${data['verdict'] ?? '-'}\n',
               style: TextStyle(
                 color: getScoreColor(score),
                 fontSize: 24,
@@ -224,10 +221,9 @@ class ResultPage extends StatelessWidget {
         borderRadius: BorderRadius.all(Radius.circular(16)),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withValues(alpha: 0.4),
-            blurRadius: 2,
-            spreadRadius: 2,
-            offset: Offset(0.0, 4.0),
+            color: Colors.grey.withOpacity(0.4),
+            blurRadius: 8,
+            offset: Offset(0, 2),
           ),
         ],
       ),

@@ -74,13 +74,9 @@ class _ImagePickerState extends State<InputImageScreen> {
           SizedBox(
             width: double.infinity,
             child: ElevatedButton(
-              onPressed: () {
+              onPressed: _selectedImage == null ? null : () {
                 _submitImage();
               },
-              style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF1982C4),
-                foregroundColor: Colors.white,
-              ),
               child: Text('Scan Now'),
             ),
           ),

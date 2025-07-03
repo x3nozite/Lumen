@@ -10,6 +10,7 @@ class InputTextScreen extends StatefulWidget {
 
 class _InputTextScreen extends State<InputTextScreen> {
   final TextEditingController _controller = TextEditingController();
+  bool _isLoading = false;
 
   @override
   Widget build(BuildContext context) {
@@ -21,43 +22,59 @@ class _InputTextScreen extends State<InputTextScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(32),
-        child: Column(
-          children: [
-            _titleText(context),
-            SizedBox(height: 24),
-            _textInput(),
-            Spacer(),
-            Text(
-              'Each upload will be archived and not editable. Please review your text to ensure it appears exactly as you intend before scanning.',
-              style: TextStyle(fontSize: 10, color: Color(0xFF67656C)),
-            ),
-            SizedBox(height: 8),
-            SizedBox(
-              width: double.infinity,
-              child: ElevatedButton(
-                onPressed: () async {
-                  final response = await Api.postTextAnalysis(_controller.text);
-
-                  if (response != null) {
-                    Navigator.pushNamed(
-                      context,
-                      '/result',
-                      arguments: {
-                        'data': response,
-                        'inputText': _controller.text,
-                      },
-                    );
-                  }
-                },
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF1982C4),
-                  foregroundColor: Colors.white,
-                ),
-                child: Text('Scan Now'),
+        child: _isLoading
+            ? Center(child: CircularProgressIndicator())
+            : Column(
+                children: [
+                  _titleText(context),
+                  SizedBox(height: 24),
+                  _textInput(),
+                  Spacer(),
+                  Text(
+                    'Each upload will be archived and not editable. Please review your text to ensure it appears exactly as you intend before scanning.',
+                    style: TextStyle(fontSize: 10, color: Color(0xFF67656C)),
+                  ),
+                  SizedBox(height: 8),
+                  SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: _controller.text.trim().isEmpty || _isLoading
+                          ? null
+                          : () async {
+                              setState(() => _isLoading = true);
+                              try {
+                                final response = await Api.postTextAnalysis(_controller.text);
+                                if (response != null) {
+                                  Navigator.pushNamed(
+                                    context,
+                                    '/result',
+                                    arguments: {
+                                      'data': response,
+                                      'inputText': _controller.text,
+                                    },
+                                  );
+                                } else {
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    SnackBar(content: Text('Failed to get result from server')),
+                                  );
+                                }
+                              } catch (e) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(content: Text('Error: $e')),
+                                );
+                              } finally {
+                                setState(() => _isLoading = false);
+                              }
+                            },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF1982C4),
+                        foregroundColor: Colors.white,
+                      ),
+                      child: Text('Scan Now'),
+                    ),
+                  ),
+                ],
               ),
-            ),
-          ],
-        ),
       ),
     );
   }
@@ -83,6 +100,9 @@ class _InputTextScreen extends State<InputTextScreen> {
       keyboardType: TextInputType.multiline,
       minLines: 10,
       maxLines: 15,
+      onChanged: (text) {
+        setState(() {}); // Update tombol ketika ada text yang dimasukkan
+      },
     );
   }
 

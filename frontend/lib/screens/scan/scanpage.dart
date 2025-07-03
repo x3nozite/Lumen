@@ -4,8 +4,15 @@ import 'package:frontend/screens/scan/input/inputtext.dart';
 import 'package:frontend/screens/scan/input/inputimage.dart';
 
 //ini harusny stateful kan
-class ScanPage extends StatelessWidget {
+class ScanPage extends StatefulWidget {
   const ScanPage({super.key});
+
+  @override
+  State<ScanPage> createState() => _ScanPageState();
+}
+
+class _ScanPageState extends State<ScanPage> {
+  String username = "User"; // Ganti dengan ambil dari provider/user data
 
   @override
   Widget build(BuildContext context) {
@@ -14,18 +21,16 @@ class ScanPage extends StatelessWidget {
       appBar: AppBar(
         leading: Icon(Icons.account_circle),
         title: Text(
-          'Hello, [Username]',
+          'Hello, $username',
           style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
         ),
         actions: <Widget>[
           IconButton(
-            onPressed: () {
-              //search bar function/class
-            },
             icon: Icon(Icons.search),
+            onPressed: null, // Nonaktifkan
           ),
-
           IconButton(
+            icon: Icon(Icons.notifications),
             onPressed: () {
               Navigator.push(
                 context,
@@ -34,7 +39,6 @@ class ScanPage extends StatelessWidget {
                 ),
               );
             },
-            icon: Icon(Icons.notifications),
           ),
         ],
         backgroundColor: Theme.of(context).primaryColor,
