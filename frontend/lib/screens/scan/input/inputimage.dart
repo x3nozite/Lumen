@@ -45,16 +45,18 @@ class _ImagePickerState extends State<InputImageScreen> {
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor,
       appBar: AppBar(title: Text('Scan Image'), centerTitle: true),
-
+    
       body: _imageField(context)
     );
   }
 
   Padding _imageField(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(32),
       child: Column(
         children: [
+          _titleText(context),
+          SizedBox(height: 24),
           _selectedImage != null ? _imageUploaded(context) : _noImageUploaded(context),
           SizedBox(height: 20),
           ElevatedButton.icon(
@@ -96,6 +98,30 @@ class _ImagePickerState extends State<InputImageScreen> {
       height: 200,
       width: double.infinity,
       fit: BoxFit.cover,
+    );
+  }
+
+  RichText _titleText(BuildContext context) {
+    return RichText(
+      text: TextSpan(
+        style: DefaultTextStyle.of(context).style.copyWith(
+          fontFamily: 'Poppins',
+          color: Colors.black,
+          decoration: TextDecoration.none,
+          height: 2,
+        ),
+        children: [
+          TextSpan(
+            text: 'Upload image to scan\n',
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+          ),
+          TextSpan(
+            text:
+                'Upload image to check for fraud, hoaxes, or misinformation in seconds.',
+            style: const TextStyle(fontSize: 11, fontWeight: FontWeight.w500),
+          )
+        ],
+      ),
     );
   }
 }
