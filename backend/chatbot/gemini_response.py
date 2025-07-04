@@ -14,6 +14,7 @@ client = OpenAI(
 # Calling the OpenAI api to extract the main claim from the user's text
 def extract_main_claim(words):
     instruction = f"""
+    Adjust language used to the user input's language
     Extract the main factual claim made in the following content. Just the main claim, no other text or formatting.
     """
 
@@ -69,6 +70,7 @@ def get_response(claim, links):
 
     # System prompt
     instruction = f"""
+    Adjust language used to the user input's language
     External Sources  (Only use these as external sources): {formatted_sources}
     Analyze the content and return a structured JSON object with this structure:
     1. "main_claim" : Main claim.
