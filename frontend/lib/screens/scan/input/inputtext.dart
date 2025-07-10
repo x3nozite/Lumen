@@ -36,6 +36,14 @@ class _InputTextScreen extends State<InputTextScreen> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
+                  showDialog(
+                    context: context,
+                    barrierDismissible:
+                        false, // Prevent dismissing by tapping outside
+                    builder: (context) =>
+                        const Center(child: CircularProgressIndicator()),
+                  );
+
                   final response = await Api.postTextAnalysis(_controller.text);
 
                   if (response != null) {
